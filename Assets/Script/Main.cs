@@ -51,8 +51,8 @@ public class Main : MonoBehaviour {
 
         //UI
         inputRate = correctCount / Time.time;
-        correctRate = correctCount / (missCount + correctCount) * 100;
-        rateText.text = string.Format("{0:f} %", correctRate * 100);
+        correctRate = ((float)correctCount / (missCount + correctCount)) * 100;
+        rateText.text = string.Format("{0:f} %", correctRate);
         secText.text = string.Format("{0:f1}key / sec", inputRate);
         
     }
