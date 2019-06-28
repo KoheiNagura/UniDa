@@ -16,15 +16,11 @@ public class Main : MonoBehaviour {
     private int index;
     private bool isShift;
     private string[] keys =  {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z","1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
-    private string input;
-    private string inputLog;
+    private string input, inputLog;
     [SerializeField] private int correctCount, missCount;
     [SerializeField] private float correctRate, inputRate;
     [Header("UI")]
-    [SerializeField] private Text inputText;
-    [SerializeField] private Text questionText;
-    [SerializeField] private Text rateText;
-    [SerializeField] private Text secText;
+    [SerializeField] private Text inputText, questionText, guideText, rateText, secText;
     private void Awake(){
         //json読み込み
         string filePath = Application.dataPath + "/Data/data.json";
@@ -62,6 +58,7 @@ public class Main : MonoBehaviour {
         inputLog = "";
         question = data.words[Random.Range(0, data.words.Length)].ToCharArray();
         questionText.text = new string(question);
+        guideText.text = questionText.text;
     }
 
     private void Correct(string key){
