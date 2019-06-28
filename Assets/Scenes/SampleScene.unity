@@ -514,7 +514,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: bc8e0417fb4494ca38ac4188f7f6d1c3, type: 3}
   - {fileID: 100000, guid: e698ee99f4e4443bda9ef4f8640c7ac0, type: 3}
   - {fileID: 100000, guid: 0d48e37a4bc314299ba002c9549b7ef9, type: 3}
-  correctCount: 1
+  correctCount: 0
   missCount: 0
   correctRate: 0
   inputRate: 0
@@ -663,7 +663,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100.00 %
+  m_Text: 0.00 %
 --- !u!222 &832807342
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class Main : MonoBehaviour {
     private string[] keys =  {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z","1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
     private string input;
     private string inputLog;
-    [SerializeField] private int correctCount = 1, missCount;
+    [SerializeField] private int correctCount, missCount;
     [SerializeField] private float correctRate, inputRate;
     [Header("UI")]
     [SerializeField] private Text inputText;
@@ -26,7 +26,6 @@ public class Main : MonoBehaviour {
     [SerializeField] private Text rateText;
     [SerializeField] private Text secText;
     private void Awake(){
-        correctCount = 1;
         //json読み込み
         string filePath = Application.dataPath + "/Data/data.json";
         string json = File.ReadAllText(filePath);
@@ -51,9 +50,10 @@ public class Main : MonoBehaviour {
 
         //UI
         inputRate = correctCount / Time.time;
+        secText.text = string.Format("{0:f1}key / sec", inputRate);
+        if((missCount + correctCount) <= 0) return;
         correctRate = ((float)correctCount / (missCount + correctCount)) * 100;
         rateText.text = string.Format("{0:f} %", correctRate);
-        secText.text = string.Format("{0:f1}key / sec", inputRate);
         
     }
     private void CreateQuestion(){
