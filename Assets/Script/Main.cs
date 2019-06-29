@@ -18,6 +18,8 @@ public class Main : MonoBehaviour {
     private bool isShift;
     private string[] keys =  {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z","1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
     private string input, inputLog;
+    private int logMax = 5;
+    private List<string> questionLog = new List<string>();
     private int nowLevel;
     private List<string> level1 = new List<string>();
     private List<string> level2 = new List<string>();
@@ -85,7 +87,16 @@ public class Main : MonoBehaviour {
         index = 0;
         inputText.text = "";
         inputLog = "";
-        question = array[Random.Range(0, array.Count)].ToCharArray();
+        string s = array[Random.Range(0, array.Count)];
+        while(questionLog.Contains(s)){
+            s = array[Random.Range(0, array.Count)];
+            print(s);
+        }
+        questionLog.Add(s);
+        foreach(string str in questionLog){
+            print(str);
+        }
+        question = s.ToCharArray();
         questionText.text = new string(question);
         guideText.text = questionText.text;
         nowLevel++;
