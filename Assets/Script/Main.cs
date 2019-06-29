@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -17,6 +18,11 @@ public class Main : MonoBehaviour {
     private bool isShift;
     private string[] keys =  {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z","1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
     private string input, inputLog;
+    private int nowLevel;
+    private List<string> level1 = new List<string>();
+    private List<string> level2 = new List<string>();
+    private List<string> level3 = new List<string>();
+    private List<string> level4 = new List<string>();
     [SerializeField] private int correctCount, missCount;
     [SerializeField] private float correctRate, inputRate;
     [Header("UI")]
@@ -26,6 +32,19 @@ public class Main : MonoBehaviour {
         string filePath = Application.dataPath + "/Data/data.json";
         string json = File.ReadAllText(filePath);
         data = JsonUtility.FromJson<TypingData>(json);
+        data.words = data.words.OrderBy((content) => content.Length).ToArray();
+        //文字数でレベル分けする。
+        foreach(string s in data.words){
+            if(s.Length > 13){
+                level4.Add(s);
+            }else if(s.Length > 9){
+                level3.Add(s);
+            }else if(s.Length > 5){
+                level2.Add(s);
+            }else{
+                level1.Add(s);                
+            }
+        }
         CreateQuestion();
     }
     private void Update(){
@@ -53,12 +72,24 @@ public class Main : MonoBehaviour {
         
     }
     private void CreateQuestion(){
+        List<string> array = new List<string>();
+        if(nowLevel < 4){
+            array = level1;
+        }else if(nowLevel < 9){
+            array = level2;
+        }else if(nowLevel < 13){
+            array = level3;
+        }else{
+            array = level4;
+        }
         index = 0;
         inputText.text = "";
         inputLog = "";
-        question = data.words[Random.Range(0, data.words.Length)].ToCharArray();
+        question = array[Random.Range(0, array.Count)].ToCharArray();
         questionText.text = new string(question);
         guideText.text = questionText.text;
+        nowLevel++;
+        if(nowLevel >= 16) nowLevel = 0;
     }
 
     private void Correct(string key){
