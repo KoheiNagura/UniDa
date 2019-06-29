@@ -116,6 +116,19 @@
         "value",
         "Range",
         "Debug",
-        "Log"
+        "Log",
+        "Scene",
+        "SceneManager",
+        "GetSceneByName",
+        "GetSceneByPath",
+        "GetSceneAt",
+        "GetSceneByBuildIndex",
+        "GetActiveScene",
+        "SetActiveScene",
+        "LoadSceneMode",
+        "LoadSceneAsync",
+        "UnloadSceneAsync",
+        "CreateScene",
+        "LoadScene"
     ]
 }
