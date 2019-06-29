@@ -90,12 +90,9 @@ public class Main : MonoBehaviour {
         string s = array[Random.Range(0, array.Count)];
         while(questionLog.Contains(s)){
             s = array[Random.Range(0, array.Count)];
-            print(s);
         }
         questionLog.Add(s);
-        foreach(string str in questionLog){
-            print(str);
-        }
+        if(questionLog.Count > logMax) questionLog.RemoveAt(0);
         question = s.ToCharArray();
         questionText.text = new string(question);
         guideText.text = questionText.text;
