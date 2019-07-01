@@ -1,17 +1,10 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.IO;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class Main : MonoBehaviour {
-    [System.Serializable]
-    public class TypingData{
-        public string[] words;
-    }
-    [SerializeField] private TypingData data;
     [SerializeField] private char[] question;
     [SerializeField] private GameObject[] prefabs;
     private int index;
@@ -30,13 +23,8 @@ public class Main : MonoBehaviour {
     [Header("UI")]
     [SerializeField] private Text inputText, questionText, guideText, rateText, secText;
     private void Awake(){
-        //json読み込み
-        string filePath = Application.dataPath + "/Data/data.json";
-        string json = File.ReadAllText(filePath);
-        data = JsonUtility.FromJson<TypingData>(json);
-        data.words = data.words.OrderBy((content) => content.Length).ToArray();
         //文字数でレベル分けする。
-        foreach(string s in data.words){
+        foreach(string s in Manager.Instance.data.words){
             if(s.Length > 13){
                 level4.Add(s);
             }else if(s.Length > 9){
