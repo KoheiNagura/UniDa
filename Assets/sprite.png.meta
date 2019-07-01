@@ -3,6 +3,8 @@ guid: d25ee20deba8141b18aad831f40a1617
 TextureImporter:
   fileIDToRecycleName:
     21300000: logo
+    21300002: play
+    21300004: setting
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -111,6 +113,46 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 806fa355fca19442fae7ce3e47e8a866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: play
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 548
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d6b3b90f3ca74918b8c4da5705c032e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: setting
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 548
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2939386801d641b8919ecbc6f41b134
       vertices: []
       indices: 
       edges: []
