@@ -9,6 +9,7 @@ public class Manager : SingletonMonoBehaviour<Manager>{
     public class TypingData{
         public string[] words;
     }
+    [SerializeField] private GameObject[] prefabs;
     public TypingData data;
     void Awake(){
         DontDestroyOnLoad(this.gameObject);
@@ -17,5 +18,9 @@ public class Manager : SingletonMonoBehaviour<Manager>{
         string json = File.ReadAllText(filePath);
         data = JsonUtility.FromJson<TypingData>(json);
         data.words = data.words.OrderBy((content) => content.Length).ToArray();
+    }
+
+    public GameObject CreatePrefab(){
+        return Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
     }
 }

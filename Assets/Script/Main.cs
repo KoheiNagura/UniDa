@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class Main : MonoBehaviour {
     [SerializeField] private char[] question;
-    [SerializeField] private GameObject[] prefabs;
     private int index;
     private bool isShift;
     private string[] keys =  {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z","1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
@@ -95,7 +94,9 @@ public class Main : MonoBehaviour {
         correctCount++;
         if(index >= question.Length){
             for(int i = 0; i < question.Length; i++){
-                GameObject obj = Instantiate(prefabs[Random.Range(0, prefabs.Length)], new Vector3(Random.Range(-8f, 8f), 5, 0), Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
+                GameObject obj = Manager.Instance.CreatePrefab();
+                obj.transform.position = new Vector3(Random.Range(-8f, 8f), 5, 0);
+                obj.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
                 StartCoroutine(Wait(15f, () => { Destroy(obj); }));
             }
             CreateQuestion();

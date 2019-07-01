@@ -141,6 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a75b621bc6334034822d0fb161cf8c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 100000, guid: bc8e0417fb4494ca38ac4188f7f6d1c3, type: 3}
+  - {fileID: 100000, guid: e698ee99f4e4443bda9ef4f8640c7ac0, type: 3}
+  - {fileID: 100000, guid: 0d48e37a4bc314299ba002c9549b7ef9, type: 3}
   data:
     words: []
 --- !u!4 &1208052311
