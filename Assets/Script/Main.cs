@@ -22,7 +22,7 @@ public class Main : MonoBehaviour {
     [SerializeField] private float correctRate, inputRate;
     [Header("UI")]
     [SerializeField] private Text inputText, questionText, guideText, rateText, secText;
-    private void Awake(){
+    private void Start(){
         //文字数でレベル分けする。
         foreach(string s in Manager.Instance.data.words){
             if(s.Length > 13){

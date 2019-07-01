@@ -11,6 +11,7 @@ public class Manager : SingletonMonoBehaviour<Manager>{
     }
     public TypingData data;
     void Awake(){
+        DontDestroyOnLoad(this.gameObject);
         //json読み込み
         string filePath = Application.dataPath + "/Data/data.json";
         string json = File.ReadAllText(filePath);
