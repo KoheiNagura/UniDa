@@ -992,6 +992,8 @@ MonoBehaviour:
   inputText: {fileID: 1195577440}
   questionText: {fileID: 1617135620}
   guideText: {fileID: 1676217915}
+  scoreText: {fileID: 50176064}
+  timerText: {fileID: 221354420}
 --- !u!4 &690484088
 Transform:
   m_ObjectHideFlags: 0

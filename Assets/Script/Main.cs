@@ -20,9 +20,11 @@ public class Main : MonoBehaviour {
     [SerializeField] private GameObject hideObject;
     [SerializeField] private AudioSource correct, miss, start, next;
     [SerializeField] private int correctCount, missCount;
+    private int score;
+    private float timer = 60;
     private bool isPlaying, flag;
     [Header("UI")]
-    [SerializeField] private Text inputText, questionText, guideText;
+    [SerializeField] private Text inputText, questionText, guideText, scoreText, timerText;
     private void Start(){
         //文字数でレベル分けする。
         foreach(string s in Manager.Instance.data.words){
@@ -54,6 +56,12 @@ public class Main : MonoBehaviour {
                     else Mistake(input);
                 }
             }
+
+            timer -= Time.deltaTime;
+
+            //UI
+            scoreText.text = "SCORE" + "\n" + score.ToString("D7");
+            timerText.text = "TIME" + "\n" + Mathf.FloorToInt(timer).ToString("D2");
         }else{
             if(Input.GetKeyDown(KeyCode.Space) && !flag){
                 flag = true;
