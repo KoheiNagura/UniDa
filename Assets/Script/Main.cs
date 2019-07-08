@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour {
     [SerializeField] private char[] question;
@@ -72,6 +73,7 @@ public class Main : MonoBehaviour {
                 }));
             }
         }
+        if(Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene("SampleScene");
     }
     private void CreateQuestion(){
         List<string> array = new List<string>();

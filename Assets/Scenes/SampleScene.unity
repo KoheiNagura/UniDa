@@ -200,7 +200,7 @@ MonoBehaviour:
     m_LineSpacing: 1.2
   m_Text: 'Score
 
-    0000000'
+    --------'
 --- !u!222 &50176065
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -502,7 +502,7 @@ MonoBehaviour:
     m_LineSpacing: 1.2
   m_Text: 'Time
 
-    00'
+    --'
 --- !u!222 &221354421
 CanvasRenderer:
   m_ObjectHideFlags: 0
