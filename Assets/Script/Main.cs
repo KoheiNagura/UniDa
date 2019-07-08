@@ -69,8 +69,8 @@ public class Main : MonoBehaviour {
                 counting = diff;
             }
             if(diff > 0){
-                displayScore += counting * Time.deltaTime / 2;
-                diff -= counting * Time.deltaTime / 2;
+                displayScore += counting * Time.deltaTime * 2;
+                diff -= counting * Time.deltaTime * 2;
                 if(displayScore > lastScore) displayScore = lastScore;
             }
             scoreText.text = "SCORE" + "\n" + Mathf.CeilToInt(displayScore).ToString("D5");
