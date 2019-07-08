@@ -17,10 +17,12 @@ public class Main : MonoBehaviour {
     private List<string> level2 = new List<string>();
     private List<string> level3 = new List<string>();
     private List<string> level4 = new List<string>();
+    [SerializeField] private GameObject hideObject;
+    [SerializeField] private AudioSource correct, miss, start, next;
     [SerializeField] private int correctCount, missCount;
-    [SerializeField] private float correctRate, inputRate;
+    private bool isPlaying, flag;
     [Header("UI")]
-    [SerializeField] private Text inputText, questionText, guideText, rateText, secText;
+    [SerializeField] private Text inputText, questionText, guideText;
     private void Start(){
         //文字数でレベル分けする。
         foreach(string s in Manager.Instance.data.words){
@@ -37,28 +39,31 @@ public class Main : MonoBehaviour {
         CreateQuestion();
     }
     private void Update(){
-        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
-            isShift = true;
-        }else{
-            isShift = false;
-        }
+        if(isPlaying){
+            if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
+                isShift = true;
+            }else{
+                isShift = false;
+            }
 
-        foreach(string key in keys){
-            if(Input.GetKeyDown(key)){
-                input = key;
-                if(isShift) input = input.ToUpper();
-                if(question[index].ToString() == input) Correct(input);
-                else Mistake(input);
+            foreach(string key in keys){
+                if(Input.GetKeyDown(key)){
+                    input = key;
+                    if(isShift) input = input.ToUpper();
+                    if(question[index].ToString() == input) Correct(input);
+                    else Mistake(input);
+                }
+            }
+        }else{
+            if(Input.GetKeyDown(KeyCode.Space) && !flag){
+                flag = true;
+                start.Play();
+                StartCoroutine(Wait(0.8f,()=>{
+                    isPlaying = true;
+                    hideObject.SetActive(false);
+                }));
             }
         }
-
-        //UI
-        inputRate = correctCount / Time.time;
-        secText.text = string.Format("{0:f1}key / sec", inputRate);
-        if((missCount + correctCount) <= 0) return;
-        correctRate = ((float)correctCount / (missCount + correctCount)) * 100;
-        rateText.text = string.Format("{0:f} %", correctRate);
-        
     }
     private void CreateQuestion(){
         List<string> array = new List<string>();
@@ -92,6 +97,7 @@ public class Main : MonoBehaviour {
         inputLog += key;
         inputText.text = inputLog; 
         correctCount++;
+        correct.Play();
         if(index >= question.Length){
             for(int i = 0; i < question.Length; i++){
                 GameObject obj = Manager.Instance.CreatePrefab();
@@ -99,10 +105,12 @@ public class Main : MonoBehaviour {
                 obj.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
                 StartCoroutine(Wait(15f, () => { Destroy(obj); }));
             }
+            next.Play();
             CreateQuestion();
         }
     }
     private void Mistake(string key){
+        miss.Play();
         inputText.text = string.Format("{0}<color=#ff0000ff>{1}</color>", inputLog, key);
         missCount++;
     }
