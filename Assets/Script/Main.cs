@@ -26,6 +26,8 @@ public class Main : MonoBehaviour {
     private bool isPlaying, flag, noMiss;
     [Header("UI")]
     [SerializeField] private Text inputText, questionText, guideText, scoreText, timerText;
+    private float lastScore = 0, displayScore = 0;
+    private float diff, counting;
     private void Start(){
         //文字数でレベル分けする。
         foreach(string s in Manager.Instance.data.words){
@@ -61,7 +63,17 @@ public class Main : MonoBehaviour {
             timer -= Time.deltaTime;
 
             //UI
-            scoreText.text = "SCORE" + "\n" + score.ToString("D7");
+            if(lastScore < score){
+                lastScore = score;
+                diff = lastScore - displayScore;
+                counting = diff;
+            }
+            if(diff > 0){
+                displayScore += counting * Time.deltaTime / 2;
+                diff -= counting * Time.deltaTime / 2;
+                if(displayScore > lastScore) displayScore = lastScore;
+            }
+            scoreText.text = "SCORE" + "\n" + Mathf.CeilToInt(displayScore).ToString("D5");
             timerText.text = "TIME" + "\n" + Mathf.FloorToInt(timer).ToString("D2");
         }else{
             if(Input.GetKeyDown(KeyCode.Space) && !flag){
