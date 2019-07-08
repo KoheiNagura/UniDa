@@ -23,7 +23,7 @@ public class Main : MonoBehaviour {
     [SerializeField] private int correctCount, missCount;
     private int score;
     private float timer = 60;
-    private bool isPlaying, flag;
+    private bool isPlaying, flag, noMiss;
     [Header("UI")]
     [SerializeField] private Text inputText, questionText, guideText, scoreText, timerText;
     private void Start(){
@@ -100,6 +100,7 @@ public class Main : MonoBehaviour {
         guideText.text = questionText.text;
         nowLevel++;
         if(nowLevel >= 16) nowLevel = 0;
+        noMiss = true;
     }
 
     private void Correct(string key){
@@ -109,12 +110,15 @@ public class Main : MonoBehaviour {
         correctCount++;
         correct.Play();
         if(index >= question.Length){
-            for(int i = 0; i < question.Length; i++){
+            int sc = question.Length;
+            if(noMiss) sc = Mathf.CeilToInt(sc * 1.5f);
+            for(int i = 0; i < sc; i++){
                 GameObject obj = Manager.Instance.CreatePrefab();
                 obj.transform.position = new Vector3(Random.Range(-8f, 8f), 5, 0);
                 obj.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
                 StartCoroutine(Wait(15f, () => { Destroy(obj); }));
             }
+            score += sc * 10;
             next.Play();
             CreateQuestion();
         }
@@ -123,6 +127,7 @@ public class Main : MonoBehaviour {
         miss.Play();
         inputText.text = string.Format("{0}<color=#ff0000ff>{1}</color>", inputLog, key);
         missCount++;
+        noMiss = false;
     }
 
     IEnumerator Wait(float time, UnityAction action){
