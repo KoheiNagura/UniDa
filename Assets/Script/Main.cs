@@ -20,8 +20,8 @@ public class Main : MonoBehaviour {
     private List<string> level4 = new List<string>();
     [SerializeField] private GameObject hideObject;
     [SerializeField] private AudioSource correct, miss, start, next;
-    [SerializeField] private int correctCount, missCount;
-    private int score;
+    public static int correctCount, missCount;
+    public static int score;
     private float timer = 60;
     private bool isPlaying, flag, noMiss;
     [Header("UI")]
@@ -29,6 +29,9 @@ public class Main : MonoBehaviour {
     private float lastScore = 0, displayScore = 0;
     private float diff, counting;
     private void Start(){
+        score = 0;
+        correctCount = 0;
+        missCount = 0;
         //文字数でレベル分けする。
         foreach(string s in Manager.Instance.data.words){
             if(s.Length > 13){
@@ -59,9 +62,6 @@ public class Main : MonoBehaviour {
                     else Mistake(input);
                 }
             }
-
-            timer -= Time.deltaTime;
-
             //UI
             if(lastScore < score){
                 lastScore = score;
@@ -75,6 +75,13 @@ public class Main : MonoBehaviour {
             }
             scoreText.text = "SCORE" + "\n" + Mathf.CeilToInt(displayScore).ToString("D5");
             timerText.text = "TIME" + "\n" + Mathf.FloorToInt(timer).ToString("D2");
+
+            timer -= Time.deltaTime;
+            if(timer < 0 && isPlaying){
+                isPlaying = false;
+                scoreText.text = "SCORE" + "\n" + score.ToString("D5");
+                timerText.text = "TIME" + "\n" + 0.ToString("D2");
+            }
         }else{
             if(Input.GetKeyDown(KeyCode.Space) && !flag){
                 flag = true;

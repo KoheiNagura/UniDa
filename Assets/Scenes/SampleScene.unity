@@ -987,8 +987,6 @@ MonoBehaviour:
   miss: {fileID: 1694937405}
   start: {fileID: 2052844833}
   next: {fileID: 2069420845}
-  correctCount: 0
-  missCount: 0
   inputText: {fileID: 1195577440}
   questionText: {fileID: 1617135620}
   guideText: {fileID: 1676217915}
