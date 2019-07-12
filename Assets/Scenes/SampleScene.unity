@@ -983,10 +983,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   hideObject: {fileID: 943679480}
-  correct: {fileID: 603960100}
-  miss: {fileID: 1694937405}
-  start: {fileID: 2052844833}
-  next: {fileID: 2069420845}
   inputText: {fileID: 1195577440}
   questionText: {fileID: 1617135620}
   guideText: {fileID: 1676217915}
@@ -1778,7 +1774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 95.71429, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617135619

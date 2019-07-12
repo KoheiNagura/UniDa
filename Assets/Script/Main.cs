@@ -19,7 +19,6 @@ public class Main : MonoBehaviour {
     private List<string> level3 = new List<string>();
     private List<string> level4 = new List<string>();
     [SerializeField] private GameObject hideObject;
-    [SerializeField] private AudioSource correct, miss, start, next;
     public static int correctCount, missCount;
     public static int score;
     private float timer = 60;
@@ -85,7 +84,7 @@ public class Main : MonoBehaviour {
         }else{
             if(Input.GetKeyDown(KeyCode.Space) && !flag){
                 flag = true;
-                start.Play();
+                SoundManager.Instance.PlayStart();
                 StartCoroutine(Wait(0.8f,()=>{
                     isPlaying = true;
                     hideObject.SetActive(false);
@@ -127,7 +126,7 @@ public class Main : MonoBehaviour {
         inputLog += key;
         inputText.text = inputLog; 
         correctCount++;
-        correct.Play();
+        SoundManager.Instance.PlayCorrect();
         if(index >= question.Length){
             int sc = question.Length;
             if(noMiss) sc = Mathf.CeilToInt(sc * 1.5f);
@@ -138,12 +137,12 @@ public class Main : MonoBehaviour {
                 StartCoroutine(Wait(15f, () => { Destroy(obj); }));
             }
             score += sc * 10;
-            next.Play();
+            SoundManager.Instance.PlayNext();
             CreateQuestion();
         }
     }
     private void Mistake(string key){
-        miss.Play();
+        SoundManager.Instance.PlayMiss();
         inputText.text = string.Format("{0}<color=#ff0000ff>{1}</color>", inputLog, key);
         missCount++;
         noMiss = false;
