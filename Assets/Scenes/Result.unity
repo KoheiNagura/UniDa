@@ -1410,6 +1410,9 @@ MonoBehaviour:
   score: {fileID: 1152982677}
   other: {fileID: 987141849}
   scoreText: {fileID: 209397061}
+  correctText: {fileID: 471116061}
+  missText: {fileID: 1652933028}
+  rateText: {fileID: 1621774131}
 --- !u!1 &1369886050
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,7 +2239,7 @@ GameObject:
   - component: {fileID: 1913805760}
   - component: {fileID: 1913805759}
   m_Layer: 5
-  m_Name: Rate (1)
+  m_Name: '%'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
