@@ -31,4 +31,7 @@ public class ResultUI : UIBase{
                 other.anchoredPosition = Vector2.zero;
             }).Play();
     }
+    void Update(){
+        if(Input.anyKeyDown) DOTween.KillAll(true);
+    }
 }
