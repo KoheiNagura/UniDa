@@ -80,6 +80,7 @@ public class Main : MonoBehaviour {
                 isPlaying = false;
                 scoreText.text = "SCORE" + "\n" + score.ToString("D5");
                 timerText.text = "TIME" + "\n" + 0.ToString("D2");
+                SceneManager.LoadScene("Result");
             }
         }else{
             if(Input.GetKeyDown(KeyCode.Space) && !flag){
