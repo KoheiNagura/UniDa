@@ -6,8 +6,4 @@ public class ResultUI : UIBase{
     void Start(){
         
     }
-
-    void Update(){
-        
-    }
 }
