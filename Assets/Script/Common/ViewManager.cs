@@ -22,8 +22,6 @@ public class ViewManager : SingletonMonoBehaviour<ViewManager>{
         var view = GetView(viewType);
         if(view == Instance.currentView) Instance.currentView = Instance.lastView;
         view.origin.gameObject.SetActive(false);
-        print(view.origin.name);
-        print(view.origin.gameObject.activeSelf);
         view.Close();
     }
 
