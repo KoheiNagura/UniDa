@@ -11,6 +11,10 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager> {
         Instance.bgmSource.Play();
     }
 
+    public static void StopBGM() {
+        if(Instance.bgmSource.isPlaying) Instance.bgmSource.Stop();
+    }
+
     public static void PlayOneShot(AudioClip clip = null) {
         if(!Settings.PlaySE) return;
         if(clip == null) clip = Instance.defaultSE;
