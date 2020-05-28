@@ -37,17 +37,15 @@ public class GameView : MonoBehaviour, IView {
     }
 
     private void Update() {
-        // 開始処理
-        if(!isPlaying && isInteractive) {
-            if(Input.GetKeyDown(KeyCode.Space)) {
-                isInteractive = false;
-                AudioManager.PlayOneShot(start);
-                StartCoroutine(DelayMethod( .8f, GameStart ));
-            }
-        }
+        if(!isInteractive) return;
         // リトライ
-        if(isInteractive) {
-            if(Input.GetKeyDown(KeyCode.Escape)) Reset();
+        if(Input.GetKeyDown(KeyCode.Escape)) Reset();
+        // 開始処理
+        if(isPlaying) return;
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            isInteractive = false;
+            AudioManager.PlayOneShot(start);
+            StartCoroutine(DelayMethod( .8f, GameStart ));
         }
     }
 
